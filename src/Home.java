@@ -14,6 +14,10 @@ public class Home extends Observable {
         this.currentIndex = 0;
     }
 
+    /**
+     * Method to get the current pet the user has 'selected', by the index of the selected pet.
+     * @return type Animal - return the animal object the user has selected (whether cat or dog)
+     */
     public Animal getCurrentPet(){
         if (pets.isEmpty()){
             return null;
@@ -21,6 +25,10 @@ public class Home extends Observable {
         return pets.get(currentIndex);
     }
 
+    /**
+     * Method to get the 'next pet' in the pet array.
+     * Works by incrementing the current index, until the size of the index, then resets to 0 (the first pet)
+     */
     public void nextPet(){
         currentIndex += 1;
         if (currentIndex >= pets.size()){
@@ -29,6 +37,10 @@ public class Home extends Observable {
         sendNotification();
     }
 
+    /**
+     * Method to get the 'previous pet' in the array.
+     * Works by decrementing the current index, until the first index in the array, then resets to the last pet in the array
+     */
     public void previousPet(){
         currentIndex -= 1;
         if (currentIndex < 0){
@@ -37,21 +49,23 @@ public class Home extends Observable {
         sendNotification();
     }
 
-    public Animal getPet(int index){
-        if(index >= pets.size()){
-            throw new RuntimeException("No pets at index " + index);
-        }
-        return pets.get(index);
-    }
-
-    public int numberOfPets(){
-        return pets.size();
-    }
-
+    /**
+     * Method to add a new pet
+     * @param pet - when called, takes in a type of Animal and adds that animal to the array
+     */
     public void addPet(Animal pet){
         pets.add(pet);
     }
 
+    /**
+     * Second 'addPet' function - calls the first 'addPet' function (above)
+     * @param name - the name of the pet
+     * @param age - the age of the pet
+     * @param description - a description of the pet
+     * @param petType - the type of pet (whether cat or dog, for example)
+     * Takes n the above parameters and removes whitespace from name and description.
+     * Checks the type of pet can creates a new pet of the designated type, with the details from the above parameters
+     */
     public void addPet(String name, int age, String description, String petType){
         name = name.strip();
         description = description.strip();
@@ -78,6 +92,42 @@ public class Home extends Observable {
 
     }
 
+    /**
+     * Method to make the 'current pet' sleep
+     * @param hours - the number of hours the user wants the pet to sleep
+     */
+    public void currentPetSleep(int hours){
+        Animal pet = getCurrentPet();
+        if (pet == null) return;
+        pet.sleep(hours);
+        sendNotification();
+    }
+
+    /**
+     * Method to feed the 'current pet'
+     * @param amount - the amount of food the user wants to feed the pet
+     */
+    public void currentPetFeed(int amount){
+        Animal pet = getCurrentPet();
+        if (pet == null) return;
+        pet.feed(amount);
+        sendNotification();
+    }
+
+    /**
+     * The method to pass time. Calls the individual pet's designated 'timePass' function
+     * This is done because of different animal's different needs; dogs, for example, will get hungrier in the same amount of time than cats will.
+     */
+    public void timePass(){
+        for (var pet: pets){
+            pet.timePass();
+        }
+        sendNotification();
+    }
+
+    /**
+     * The method to signal changes to observers
+     */
     private void sendNotification() {
         setChanged();
         notifyObservers();
