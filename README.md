@@ -1,6 +1,6 @@
 ## Viewing the Javadoc Documentation
 
-for javadoc docuumentation:
+for javadoc documentation:
 
 cd docs
 python -m http.server 8000
