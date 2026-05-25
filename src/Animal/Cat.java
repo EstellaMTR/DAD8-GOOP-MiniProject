@@ -21,7 +21,7 @@ public class Cat extends Animal{
         int hungerLevel = getHungerLevel();
         if (hungerLevel - amount < 0){
             hungerLevel = 0;
-        } else{
+        } else {
             hungerLevel -= amount;
         }
         setHungerLevel(hungerLevel);
