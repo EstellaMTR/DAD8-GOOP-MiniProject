@@ -7,14 +7,24 @@ import java.util.Observable;
  */
 public abstract class Animal {
 
+    /** the name of the pet */
     private final String name;
+    /** the age of the pet */
     private final int age;
+    /** the description of the pet */
     private final String description;
 
     // 0 = full/not tired, 100 = hungry/exhausted
     private int hungerLevel;
     private int tiredLevel;
 
+
+    /**
+     * Constructs a pet, setting name age and description to parameter values, and setting hunger and tiredness to 50
+     * @param name the name the user inputs
+     * @param age - the age the user inputs
+     *  @param description - the description the user inputs
+     */
     public Animal(String name, int age, String description){
         this.name = name;
         this.age = age;

@@ -2,9 +2,14 @@ package Animal;
 
 
 public class Cat extends Animal{
-    public Cat(String name, int age, String description){
-        super(name, age, description);
-    }
+
+    /**
+     * Calls the super class
+     * @param name - the name the user inputs
+     * @param age - the age the user inputs
+     * @param description - the description the user inputs
+     */
+    public Cat(String name, int age, String description){super(name, age, description);}
 
     /**
      * Override method for feed, for cats.

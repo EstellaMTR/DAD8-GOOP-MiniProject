@@ -7,8 +7,14 @@ import java.util.List;
 import java.util.Observable;
 
 public class Home extends Observable {
+    /** Creating a list of type animals. List instead of ArrayList so we are not dependent on specifically implementing ArrayList */
     private final List<Animal> pets;
+    /** Creating an index variable to use to get pets etc later*/
     private int currentIndex;
+
+    /**
+     * Constructs theHome class, setting pets to equal an empty ArrayList, and setting currentIndex to 0
+     */
     public Home(){
         this.pets = new ArrayList<>();
         this.currentIndex = 0;

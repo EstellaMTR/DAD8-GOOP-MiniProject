@@ -2,6 +2,12 @@ package Animal;
 
 
 public class Dog extends Animal{
+    /**
+     * Calls the super class
+     * @param name - the name the user inputs
+     * @param age - the age the user inputs
+     * @param description - the description the user inputs
+     */
     public Dog(String name, int age, String description){
         super(name, age, description);
         setHungerLevel(100);
